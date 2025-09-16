@@ -1,20 +1,30 @@
-import {useState} from "react";
-import Input from "./Input";
+import React, {useState} from "react";
+
 import Button from "./Button";
+
 import "../estilizacao/AddTask.css"
 
-function AddTask() {
-    const [inputData, setInputData] = useState("");
+const AddTask = ({handleTaskAddition}) => {
+    const [inputData, setInputData] = useState('');
 
     const handleInputChange = (e) => {
-        return setInputData(e.target.value);
+        setInputData(e.target.value);
+    }
+
+    const handleAddTaskClick = () => {
+        handleTaskAddition(inputData);
+        setInputData("");
     }
 
     return(
         <div className="add-task-container">
-            <div className="add-task-input"> 
-                <Input onChange={handleInputChange} value={inputData}>Nova Lista</Input> </div>
-            <div className="add-task-button"> <Button>Adicionar</Button> </div>
+            <input onChange={handleInputChange}
+            className="add-task-input" 
+            value={inputData}
+            type="" />
+            <div className="add-task-button-container" >
+                <Button onClick={handleAddTaskClick}>Adicionar</Button>
+            </div>
         </div>
     )
 }

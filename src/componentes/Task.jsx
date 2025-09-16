@@ -1,9 +1,15 @@
 import "../estilizacao/Task.css"
 
-function Task({task}) {
+function Task({task, handleTaskClick}) {
     return(
-        <div className="container-task">
-            {task.title}
+        <div
+            className="task-container"
+            style={task.completed ? {borderLeft: '6px solid chartreuse'} : {} }
+        >
+        
+            <div className="task-title" onClick={() => handleTaskClick(task.id)}>
+                {task.title}
+            </div>
         </div>
     );
 }

@@ -1,9 +1,11 @@
 import "../estilizacao/Button.css";
 
-function Button({children}) {
+function Button({children, onClick}) {
     return(
-        <button className="button">{children}</button>
+        <button onClick={onClick}
+        className="button">{children}
+        </button>
     );
-}
+};
 
 export default Button;
