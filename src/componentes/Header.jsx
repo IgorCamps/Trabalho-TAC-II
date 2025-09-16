@@ -1,7 +1,7 @@
-import React from "react";
+import "../App.css"
 
 const Header = () => {
-    return <h1 style={ {color: "#eee"}}>Minhas Tarefas</h1>
+    return <h1 className="header">Listas de Exercícios</h1>
 }
 
 export default Header;

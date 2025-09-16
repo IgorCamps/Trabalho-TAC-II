@@ -10,11 +10,7 @@ function Task({task, handleTaskClick, handleTaskDeletion}) {
     }
     
     return(
-        <div
-            className="task-container"
-            style={task.completed ? {borderLeft: '6px solid chartreuse'} : {} }
-        >
-        
+        <div className={task.completed? "task-container task-completed": "task-container"}>
             <div className="task-title" onClick={() => handleTaskClick(task.id)}>
                 {task.title}
             </div>

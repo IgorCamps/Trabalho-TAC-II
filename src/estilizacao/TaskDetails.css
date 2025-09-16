@@ -9,11 +9,24 @@
 }
 
 .task-details-container h2 {
-    margin-bottom: 5px;
-    color: chartreuse;
+    margin-bottom: 20px;
+    font-size: 21px;
+    color: var(--cor-principal);;
 }
 
 .back-button-container {
-    width: 30%;
-    margin-top: 10px;
+    width: 20%;
+    margin-top: 20px;
+    position: relative;
+    right: -350px;
+}
+
+h3 {
+    color: var(--cor-principal);
+    font-weight: normal;
+    display: inline-block;
+}
+
+p {
+    margin-bottom: 15px;
 }

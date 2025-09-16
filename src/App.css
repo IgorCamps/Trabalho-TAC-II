@@ -1,8 +1,18 @@
+:root {
+    --cor-principal: rgb(128, 255, 157);
+}
+
 .container {
     max-width: 500px;  
     min-height: 300px; 
     margin: 30px auto; 
     padding: 30px;
-    border: 1px solid rgb(137, 235, 132);
+    border: 1px solid var(--cor-principal);
     border-radius: 10px;
+}
+
+.header {
+    margin-bottom: 30px;
+    color: #eee;
+    text-align: center;
 }

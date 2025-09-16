@@ -16,8 +16,12 @@
 .remove-task-button, .see-task-details-button{
     background-color: #444;
     border: none;
-    font-size: 24px;
-    color: chartreuse;
+    font-size: 23px;
+    color: var(--cor-principal);
     margin: 0 5px;
+    cursor: pointer;
 }
 
+.task-completed {
+  border-left: 6px solid var(--cor-principal);
+}

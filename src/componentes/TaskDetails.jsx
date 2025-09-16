@@ -1,27 +1,31 @@
-import React from "react";
-
 import Button from './Button'
 import { useNavigate, useParams } from "react-router-dom";
 
 import '../estilizacao/TaskDetails.css'
 
-const TaskDetails = () => {
+const TaskDetails = ({tasks}) => { 
     const params = useParams();
     const navigate = useNavigate();
 
     const handleBackButtonClick = () => {
         navigate(-1)
     }
+
+    // Encontrar a lista correta
+    const task = tasks.find((e) => e.title === params.taskTitle);
+    
     return (
         <>
-            <div className="back-button-container">
-                <Button onClick={handleBackButtonClick}>Voltar</Button>
-            </div>
             <div className="task-details-container">
                 <h2>{params.taskTitle}</h2>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
+                <p><h3>Descrição:</h3> {task.descricao}</p>
+                <p><h3>Nível de dificuldade:</h3> {task.nivel}</p>
+                <p><h3>Dica:</h3> {task.dica}</p>
+                <p><h3>Resposta:</h3> {task.resposta}</p>
+            </div>
+            
+            <div className="back-button-container">
+                <Button onClick={handleBackButtonClick}>Voltar</Button>
             </div>
         </>
     )
