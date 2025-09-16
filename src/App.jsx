@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Header from "./componentes/Header";
 import Tasks from "./componentes/Tasks";
 import AddTask from "./componentes/AddTask";
-import {v4 as uuidv4} from 'uuid'
+import TaskDetails from "./componentes/TaskDetails";
+
 import "./App.css";
 
 function App() {
@@ -9,58 +14,85 @@ function App() {
     {
       id: 1,
       title: "Lista 1 - Ponto de Partida",
-      completed: false
+      completed: false,
     },
     {
       id: 2,
       title: "Lista 2 - Caminhos Retos e Curvos",
-      completed: false
+      completed: false,
     },
     {
       id: 3,
       title: "Lista 3 - Triângulos no Caminho",
-      completed: false
+      completed: false,
     },
     {
       id: 4,
       title: "Lista 4 - Rota do Explorador",
-      completed: false
+      completed: false,
     },
     {
       id: 5,
       title: "Lista 5 - A Grande Jornada",
-      completed: false
-    }
+      completed: false,
+    },
   ]);
 
   const handleTaskClick = (taskId) => {
     const newTasks = tasks.map((task) => {
-        if (task.id === taskId) return { ...task, completed: !task.completed};
+      if (task.id === taskId) return { ...task, completed: !task.completed };
 
-        return task;
+      return task;
     });
 
     setTasks(newTasks);
   };
 
   const handleTaskAddition = (taskTitle) => {
-    const newTasks = [...tasks, {
+    const newTasks = [
+      ...tasks,
+      {
         title: taskTitle,
         id: uuidv4(),
-        completed: false
-    }];
+        completed: false,
+      },
+    ];
 
     setTasks(newTasks);
   };
 
-  return(
-    <>
+  const handleTaskDeletion = (taskId) => {
+    const newTasks = tasks.filter((task) => task.id !== taskId);
+
+    setTasks(newTasks);
+  };
+
+  return (
+    <Router>
       <div className="container">
-        <AddTask handleTaskAddition={handleTaskAddition} />
-        <Tasks tasks={tasks} handleTaskClick={handleTaskClick} />
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <AddTask handleTaskAddition={handleTaskAddition} />
+                <Tasks
+                  tasks={tasks}
+                  handleTaskClick={handleTaskClick}
+                  handleTaskDeletion={handleTaskDeletion}
+                />
+              </>
+            }
+          />
+        </Routes>
+
+        <Routes>
+          <Route path="/:taskTitle" element={<TaskDetails />} />
+        </Routes>
       </div>
-    </>
-  )
+    </Router>
+  );
 }
 
 export default App;
